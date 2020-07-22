@@ -86,10 +86,9 @@
         withdrawBtn.addEventListener('click', function(){
             const withdrawNumber = getInputNumber('withdrawAmount');
             updateSpanText("currentWithdraw", withdrawNumber);
-            withdrawUpdate("currentBalance", withdrawNumber);
+            updateSpanText("currentBalance", -1 * withdrawNumber);
             document.getElementById('withdrawAmount').value = '';
         });
-
 
         function getInputNumber(id){
             const amount = document.getElementById(id).value;
@@ -101,18 +100,11 @@
             const current = document.getElementById(id).innerText;
             const currentNumber = parseFloat(current);
             const totalAmount = currentNumber + inputNumber;
-            document.getElementById(id).innerText = totalAmount;
-        }
-
-        function withdrawUpdate(id, withdrawNumber){
-            const current = document.getElementById(id).innerText;
-            const currentNumber = parseFloat(current);
-            const totalAmount = currentNumber - withdrawNumber;
             if(totalAmount >= 0){
                 document.getElementById(id).innerText = totalAmount;
             }
             else{
-                document.getElementById(id).innerText = "Insufficient Balance"
+                document.getElementById(id).innerText = "Insufficient Balance";
             }
         }
     </script>
